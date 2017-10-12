@@ -1,7 +1,7 @@
 package com.spells.dentistryarticles;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +44,7 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHold
         Article article = articleList.get(position);
 
         holder.title.setText(article.getTitle());
-        holder.image.setImageBitmap(article.getImage());
+        // holder.image.setImageBitmap(article.getImage());
         holder.brief.setText(article.getBrief());
     }
 

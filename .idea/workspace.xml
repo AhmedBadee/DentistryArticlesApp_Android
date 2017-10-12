@@ -14,8 +14,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spells/dentistryarticles/Article.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spells/dentistryarticles/Article.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spells/dentistryarticles/ArticleAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spells/dentistryarticles/ArticleAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_articles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_articles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/article_row.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/article_row.xml" />
     </list>
     <ignored path="DentistryArticles.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2431,7 +2429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507815147977</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Styling the layout a little bit">
+      <created>1507815268089</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1507815268089</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2513,7 +2518,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="The data added in onPostExecute" />
-    <option name="LAST_COMMIT_MESSAGE" value="The data added in onPostExecute" />
+    <MESSAGE value="Styling the layout a little bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Styling the layout a little bit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

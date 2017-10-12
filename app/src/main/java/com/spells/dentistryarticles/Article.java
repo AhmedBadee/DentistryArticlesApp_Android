@@ -2,13 +2,13 @@ package com.spells.dentistryarticles;
 
 import android.graphics.Bitmap;
 
-public class Article {
+class Article {
 
     private String title;
     private Bitmap image;
     private String brief;
 
-    public Article() {
+    Article() {
 
     }
 
@@ -18,27 +18,27 @@ public class Article {
         this.brief = brief;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 
-    public void setImage(Bitmap image) {
+    void setImage(Bitmap image) {
         this.image = image;
     }
 
-    public void setBrief(String brief) {
+    void setBrief(String brief) {
         this.brief = brief;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public Bitmap getImage() {
+    Bitmap getImage() {
         return image;
     }
 
-    public String getBrief() {
+    String getBrief() {
         return brief;
     }
 }
