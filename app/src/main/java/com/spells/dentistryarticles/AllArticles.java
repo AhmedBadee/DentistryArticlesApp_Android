@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,30 +25,27 @@ import javax.net.ssl.HttpsURLConnection;
 public class AllArticles extends AppCompatActivity {
 
     private List<Article> articleList = new ArrayList<>();
-    private ArticleAdapter articleAdapter;
+    private RecyclerView.Adapter articleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_articles);
 
-        RecyclerView articlesRecyclerView;
-
-        articlesRecyclerView = (RecyclerView) findViewById(R.id.articles_recycler_view);
+        RecyclerView articlesRecyclerView = (RecyclerView) findViewById(R.id.articles_recycler_view);
         articleAdapter = new ArticleAdapter(articleList);
+        articlesRecyclerView.setAdapter(articleAdapter);
         articlesRecyclerView.setHasFixedSize(true);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         articlesRecyclerView.setLayoutManager(layoutManager);
-
         articlesRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        articlesRecyclerView.setAdapter(articleAdapter);
 
         new HTTPConnection(AllArticles.this).execute();
     }
 
-    private class HTTPConnection extends AsyncTask<Void, Void, Void> {
+    private class HTTPConnection extends AsyncTask<Void, Void, JSONArray> {
 
         private URL nodeUrl;
         private HttpsURLConnection urlConnection;
@@ -75,7 +71,9 @@ public class AllArticles extends AppCompatActivity {
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected JSONArray doInBackground(Void... voids) {
+
+            JSONArray articles = null;
 
             try {
                 nodeUrl = new URL("https://dentistry.herokuapp.com/");
@@ -83,51 +81,50 @@ public class AllArticles extends AppCompatActivity {
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
 
-                try {
-                    InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-                    String line;
+                String line;
 
-                    while ((line = bufferedReader.readLine()) != null)
-                        stringBuilder.append(line);
+                while ((line = bufferedReader.readLine()) != null)
+                    stringBuilder.append(line);
 
-                    inputStreamReader.close();
+                inputStreamReader.close();
 
-                    JSONArray articles = new JSONArray(stringBuilder.toString());
+                articles = new JSONArray(stringBuilder.toString());
 
                     /* JSONObject firstArticle = jsonArray.getJSONObject(0);
                     Log.e("DATA", firstArticle.getString("title"));
                     JSONObject secondArticle = jsonArray.getJSONObject(1);
                     JSONArray secondImages = secondArticle.getJSONArray("images");
                     Log.e("DATA", secondImages.getString(0)); */
-
-                    int articlesCount = articles.length();
-
-                    for (int i = 0; i < articlesCount; i++) {
-                        Article newArticle = new Article();
-                        JSONObject article;
-                        article = articles.getJSONObject(i);
-                        newArticle.setTitle(article.getString("title"));
-                        Log.e("DATA", newArticle.getTitle());
-                        newArticle.setImage(null);
-                        newArticle.setBrief(article.getString("brief"));
-                        articleList.add(newArticle);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } finally {
-                    urlConnection.disconnect();
-                }
-            } catch (IOException e) {
+            } catch (JSONException | IOException e) {
                 e.printStackTrace();
+            } finally {
+                urlConnection.disconnect();
             }
-            return null;
+            return articles;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            // articleAdapter.notifyDataSetChanged();
+        protected void onPostExecute(JSONArray articles) {
+            int articlesCount = articles.length();
+
+            try {
+                for (int i = 0; i < articlesCount; i++) {
+                    Article newArticle = new Article();
+                    JSONObject article;
+                    article = articles.getJSONObject(i);
+                    newArticle.setTitle(article.getString("title"));
+                    newArticle.setImage(null);
+                    newArticle.setBrief(article.getString("brief"));
+                    articleList.add(newArticle);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            articleAdapter.notifyDataSetChanged();
             alertDialog.dismiss();
         }
     }
