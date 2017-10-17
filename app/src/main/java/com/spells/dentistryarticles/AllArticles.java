@@ -2,6 +2,8 @@ package com.spells.dentistryarticles;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,6 +58,8 @@ public class AllArticles extends AppCompatActivity {
 
         private Context context;
 
+        private Bitmap image;
+
         HTTPConnection(Context context) {
             this.context = context;
         }
@@ -93,6 +97,11 @@ public class AllArticles extends AppCompatActivity {
 
                 articles = new JSONArray(stringBuilder.toString());
 
+                URL imageURL = new URL("https://yt3.ggpht.com/-tUnSh4hL1b0/AAAAAAAAAAI/AAAAAAAAAAA/AIy5-05CyFk/s900-c-k-no-mo-rj-c0xffffff/photo.jpg");
+                image = BitmapFactory.decodeStream(imageURL.openStream());
+
+                // image = Picasso.with(AllArticles.this).load(imageURL).get();
+
                     /* JSONObject firstArticle = jsonArray.getJSONObject(0);
                     Log.e("DATA", firstArticle.getString("title"));
                     JSONObject secondArticle = jsonArray.getJSONObject(1);
@@ -116,7 +125,7 @@ public class AllArticles extends AppCompatActivity {
                     JSONObject article;
                     article = articles.getJSONObject(i);
                     newArticle.setTitle(article.getString("title"));
-                    newArticle.setImage(null);
+                    newArticle.setImage(image);
                     newArticle.setBrief(article.getString("brief"));
                     articleList.add(newArticle);
                 }
