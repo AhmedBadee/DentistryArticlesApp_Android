@@ -13,7 +13,6 @@
     <list default="true" id="bf2e362d-d3ba-4d56-9bb0-a15fa7099f8f" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rect.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/article_row.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/article_row.xml" />
     </list>
     <ignored path="DentistryArticles.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2497,7 +2496,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508280981079</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="wrapped the row in cardview">
+      <created>1508281045779</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1508281045779</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2578,13 +2584,15 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <MESSAGE value="The data added in onPostExecute" />
     <MESSAGE value="Styling the layout a little bit" />
     <MESSAGE value="..." />
     <MESSAGE value="dependency of cardview is added" />
     <MESSAGE value="repaired the reference for the imageview" />
     <MESSAGE value="read an image from URL" />
-    <option name="LAST_COMMIT_MESSAGE" value="read an image from URL" />
+    <MESSAGE value="wrapped the row in cardview" />
+    <option name="LAST_COMMIT_MESSAGE" value="wrapped the row in cardview" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
