@@ -58,7 +58,7 @@ public class AllArticles extends AppCompatActivity {
 
         private Context context;
 
-        private Bitmap image;
+        private Bitmap[] image;
 
         HTTPConnection(Context context) {
             this.context = context;
@@ -80,7 +80,7 @@ public class AllArticles extends AppCompatActivity {
             JSONArray articles = null;
 
             try {
-                nodeUrl = new URL("https://dentistry.herokuapp.com/");
+                nodeUrl = new URL("https://dentistry.herokuapp.com/mobile/all/articles/");
                 urlConnection = (HttpsURLConnection) nodeUrl.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
@@ -97,8 +97,15 @@ public class AllArticles extends AppCompatActivity {
 
                 articles = new JSONArray(stringBuilder.toString());
 
-                URL imageURL = new URL("https://yt3.ggpht.com/-tUnSh4hL1b0/AAAAAAAAAAI/AAAAAAAAAAA/AIy5-05CyFk/s900-c-k-no-mo-rj-c0xffffff/photo.jpg");
-                image = BitmapFactory.decodeStream(imageURL.openStream());
+                image = new Bitmap[articles.length()];
+
+                for (int i = 0; i < articles.length(); i++) {
+                    JSONObject article;
+                    article = articles.getJSONObject(i);
+
+                    JSONArray imagesURLs = article.getJSONArray("images");
+                    image[i] = BitmapFactory.decodeStream(new URL(imagesURLs.getString(0)).openStream());
+                }
 
                 // image = Picasso.with(AllArticles.this).load(imageURL).get();
 
@@ -124,9 +131,11 @@ public class AllArticles extends AppCompatActivity {
                     Article newArticle = new Article();
                     JSONObject article;
                     article = articles.getJSONObject(i);
+
                     newArticle.setTitle(article.getString("title"));
-                    newArticle.setImage(image);
+                    newArticle.setImage(image[i]);
                     newArticle.setBrief(article.getString("brief"));
+
                     articleList.add(newArticle);
                 }
             } catch (JSONException e) {
