@@ -1,10 +1,34 @@
 package com.spells.dentistryarticles;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-/**
- * Created by ahmed on 10/21/17.
- */
+import android.view.View;
 
 public class UserType extends AppCompatActivity {
+
+    private boolean community_professional;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.user_type);
+    }
+
+    public void userTypeBtnClick(View view) {
+        Intent intent = new Intent(this, AllArticles.class);
+
+        switch (view.getId()) {
+            case R.id.community:
+                community_professional = true;
+                break;
+            case R.id.professional:
+                community_professional = false;
+                break;
+        }
+
+        intent.putExtra("UserType", community_professional);
+        startActivity(intent);
+        finish();
+    }
 }
