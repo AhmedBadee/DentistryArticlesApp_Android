@@ -106,14 +106,6 @@ public class AllArticles extends AppCompatActivity {
                     JSONArray imagesURLs = article.getJSONArray("images");
                     image[i] = BitmapFactory.decodeStream(new URL(imagesURLs.getString(0)).openStream());
                 }
-
-                // image = Picasso.with(AllArticles.this).load(imageURL).get();
-
-                    /* JSONObject firstArticle = jsonArray.getJSONObject(0);
-                    Log.e("DATA", firstArticle.getString("title"));
-                    JSONObject secondArticle = jsonArray.getJSONObject(1);
-                    JSONArray secondImages = secondArticle.getJSONArray("images");
-                    Log.e("DATA", secondImages.getString(0)); */
             } catch (JSONException | IOException e) {
                 e.printStackTrace();
             } finally {
