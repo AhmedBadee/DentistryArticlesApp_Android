@@ -1,10 +1,14 @@
 package com.spells.dentistryarticles;
 
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -34,7 +38,25 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHold
 
     @Override
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_row, parent, false);
+        final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_row, parent, false);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ReadArticle.class);
+
+                // Get the title of the article
+                /* start here */
+                CardView article   = (CardView) ((ViewGroup) view).getChildAt(0);
+                RelativeLayout row = (RelativeLayout) article.getChildAt(0);
+                TextView title     = (TextView) row.getChildAt(1);
+                intent.putExtra("ArticleTitle", title.getText());
+                /* end here */
+
+                view.getContext().startActivity(intent);
+            }
+        });
+
         return new ArticleViewHolder(itemView);
     }
 
