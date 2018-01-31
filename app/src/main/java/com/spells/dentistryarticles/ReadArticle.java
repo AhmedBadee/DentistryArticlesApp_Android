@@ -4,19 +4,18 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -46,7 +45,7 @@ public class ReadArticle extends AppCompatActivity {
     private class HTTPConnection extends AsyncTask<Void, Void, JSONObject> {
 
         private URL nodeUrl;
-        private HttpsURLConnection urlConnection;
+        private HttpURLConnection urlConnection;
         private StringBuilder stringBuilder = new StringBuilder();
 
         private AlertDialog.Builder alertDialogBuilder;
@@ -76,7 +75,8 @@ public class ReadArticle extends AppCompatActivity {
             JSONObject article = null;
 
             try {
-                nodeUrl = new URL("https://dentistry.herokuapp.com/mobile/single/article/" + articleTitle);
+                // nodeUrl = new URL("http://10.0.3.2:8080/DentistryArticlesMaven/REST/Article/Title/" + articleTitle);
+                nodeUrl = new URL("https://20180131t022751-dot-dentistryarticles-190917.appspot.com/REST/Article/Title/" + articleTitle);
                 urlConnection = (HttpsURLConnection) nodeUrl.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
@@ -109,7 +109,7 @@ public class ReadArticle extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject article) {
             try {
-                articleBodyTxtView.setText(article.getString("article"));
+                articleBodyTxtView.setText(article.getString("articleBody"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
