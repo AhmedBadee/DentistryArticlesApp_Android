@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,7 +34,6 @@ public class ReadArticle extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.read_article);
 
         Intent intent = getIntent();
         articleTitle = intent.getStringExtra("ArticleTitle");
@@ -113,7 +111,7 @@ public class ReadArticle extends AppCompatActivity {
 
             try {
                 // nodeUrl = new URL("http://10.0.3.2:8080/DentistryArticlesMaven/REST/Article/Title/" + articleTitle);
-                nodeUrl = new URL("https://20180131t022751-dot-dentistryarticles-190917.appspot.com/REST/Article/Title/" + articleTitle);
+                nodeUrl = new URL("https://dentistryarticles-190917.appspot.com/REST/Article/Title/" + articleTitle);
                 urlConnection = (HttpsURLConnection) nodeUrl.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
@@ -135,7 +133,6 @@ public class ReadArticle extends AppCompatActivity {
 
                 for (int i = 0; i < images.length; i++) {
                     images[i] = BitmapFactory.decodeStream(new URL(images_urls_array[i]).openStream());
-                    Log.e("URL", images_urls_array[i]);
                 }
 
                 text = article.getString("articleBody");

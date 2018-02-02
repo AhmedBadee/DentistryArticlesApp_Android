@@ -90,9 +90,9 @@ public class AllArticles extends AppCompatActivity {
             try {
                 // nodeUrl = new URL("http://10.0.3.2:8080/DentistryArticlesMaven/REST/Articles/");
                 if (community_professional) {
-                    nodeUrl = new URL("https://20180131t022751-dot-dentistryarticles-190917.appspot.com/REST/Articles/Community");
+                    nodeUrl = new URL("https://dentistryarticles-190917.appspot.com/REST/Articles/Community");
                 } else {
-                    nodeUrl = new URL("https://20180131t022751-dot-dentistryarticles-190917.appspot.com/REST/Articles/Professional");
+                    nodeUrl = new URL("https://dentistryarticles-190917.appspot.com/REST/Articles/Professional");
                 }
                 urlConnection = (HttpsURLConnection) nodeUrl.openConnection();
                 urlConnection.setRequestMethod("GET");
