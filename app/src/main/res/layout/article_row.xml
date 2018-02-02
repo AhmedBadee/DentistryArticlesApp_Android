@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:layout_margin="4dp"
         android:background="@drawable/rect"
-        card_view:cardCornerRadius="0dp">
+        card_view:cardCornerRadius="2dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,9 +36,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_margin="10dp"
-                android:background="#CCBDBDBD"
+                android:background="#80ced6B3"
                 android:textColor="#ffffff"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                style="@style/textShadow"/>
 
             <TextView
                 android:id="@+id/brief"
@@ -46,9 +47,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="10dp"
-                android:background="#CCBDBDBD"
+                android:background="#80ced6B3"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                style="@style/textShadow"/>
 
         </RelativeLayout>
 
