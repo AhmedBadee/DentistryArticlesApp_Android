@@ -54,98 +54,6 @@ public class AllArticles extends AppCompatActivity {
         new HTTPConnection(AllArticles.this).execute();
     }
 
-    /* private class HTTPConnection extends AsyncTask<Void, Void, JSONArray> {
-
-        private URL nodeUrl;
-        private HttpsURLConnection urlConnection;
-        private StringBuilder stringBuilder = new StringBuilder();
-
-        private AlertDialog.Builder alertDialogBuilder;
-        private AlertDialog alertDialog;
-
-        private Context context;
-
-        private Bitmap[] image;
-
-        HTTPConnection(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            alertDialogBuilder = new AlertDialog.Builder(context);
-            alertDialogBuilder.setMessage("Loading...");
-            alertDialogBuilder.setCancelable(false);
-
-            alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
-        }
-
-        @Override
-        protected JSONArray doInBackground(Void... voids) {
-
-            JSONArray articles = null;
-
-            try {
-                nodeUrl = new URL("https://dentistry.herokuapp.com/mobile/all/articles/");
-                urlConnection = (HttpsURLConnection) nodeUrl.openConnection();
-                urlConnection.setRequestMethod("GET");
-                urlConnection.connect();
-
-                InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null)
-                    stringBuilder.append(line);
-
-                inputStreamReader.close();
-
-                articles = new JSONArray(stringBuilder.toString());
-
-                image = new Bitmap[articles.length()];
-
-                for (int i = 0; i < articles.length(); i++) {
-                    JSONObject article;
-                    article = articles.getJSONObject(i);
-
-                    JSONArray imagesURLs = article.getJSONArray("images");
-                    image[i] = BitmapFactory.decodeStream(new URL(imagesURLs.getString(0)).openStream());
-                }
-            } catch (JSONException | IOException e) {
-                e.printStackTrace();
-            } finally {
-                urlConnection.disconnect();
-            }
-            return articles;
-        }
-
-        @Override
-        protected void onPostExecute(JSONArray articles) {
-            int articlesCount = articles.length();
-
-            try {
-                for (int i = 0; i < articlesCount; i++) {
-                    Article newArticle = new Article();
-                    JSONObject article;
-                    article = articles.getJSONObject(i);
-
-                    newArticle.setTitle(article.getString("title"));
-                    newArticle.setImage(image[i]);
-                    newArticle.setBrief(article.getString("brief"));
-
-                    articleList.add(newArticle);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            articleAdapter.notifyDataSetChanged();
-            alertDialog.dismiss();
-        }
-    } */
-
     private class HTTPConnection extends AsyncTask<Void, Void, JSONArray> {
 
         private URL nodeUrl;
@@ -202,9 +110,6 @@ public class AllArticles extends AppCompatActivity {
 
                 articles = new JSONArray(stringBuilder.toString());
 
-                /* image = new Bitmap[1];
-                image[0] = BitmapFactory.decodeStream(new URL("http://entertainment.inquirer.net/files/2017/03/Screen-Shot-2017-03-20-at-10.07.28-AM.png").openStream()); */
-
                 image = new Bitmap[articles.length()];
 
                 String images_urls;
@@ -213,7 +118,7 @@ public class AllArticles extends AppCompatActivity {
                     article = articles.getJSONObject(i);
 
                     images_urls = article.getString("images_urls");
-                    first_image_url = images_urls.split(",");
+                    first_image_url = images_urls.split(";");
                     image[i] = BitmapFactory.decodeStream(new URL(first_image_url[0]).openStream());
                 }
             } catch (JSONException | IOException e) {
