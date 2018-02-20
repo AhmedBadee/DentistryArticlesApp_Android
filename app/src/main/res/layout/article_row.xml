@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="10dp"
-                android:background="#80ced6B3"
+                android:background="#5d5a59B3"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 style="@style/textShadow"/>
