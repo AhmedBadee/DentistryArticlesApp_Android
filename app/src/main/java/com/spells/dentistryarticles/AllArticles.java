@@ -38,6 +38,8 @@ public class AllArticles extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_articles);
 
+        setTitle("All Articles");
+
         Intent intent = getIntent();
         community_professional = intent.getBooleanExtra("UserType", community_professional);
 

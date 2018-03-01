@@ -38,6 +38,8 @@ public class ReadArticle extends AppCompatActivity {
         Intent intent = getIntent();
         articleTitle = intent.getStringExtra("ArticleTitle");
 
+        setTitle(articleTitle);
+
         ScrollView scrollView = new ScrollView(this);
         ScrollView.LayoutParams layoutParams = new ScrollView.LayoutParams(
                 ScrollView.LayoutParams.MATCH_PARENT,
@@ -61,9 +63,9 @@ public class ReadArticle extends AppCompatActivity {
         TextView titleView = new TextView(this);
         titleView.setText(articleTitle);
         titleView.setLayoutParams(textLayoutParams);
-        titleView.setTextSize(25);
+        titleView.setTextSize(15);
         titleView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        linearLayout.addView(titleView);
+        // linearLayout.addView(titleView);
 
         scrollView.addView(linearLayout, linearLayoutParams);
 
